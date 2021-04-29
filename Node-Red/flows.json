@@ -1,0 +1,89 @@
+[
+    {
+        "id": "66030d11.bfd734",
+        "type": "tab",
+        "label": "Solar Panel",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c68fa24a.03f0b",
+        "type": "influxdb out",
+        "z": "66030d11.bfd734",
+        "influxdb": "839cb93e.403a28",
+        "name": "",
+        "measurement": "SolarPanel1",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 860,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "60abb445.3aa69c",
+        "type": "function",
+        "z": "66030d11.bfd734",
+        "name": "Solar Panel",
+        "func": "mV = parseFloat(msg.payload.mV);\nmA = parseFloat(msg.payload.mA);\nmW = mV * mA;\n\nout = { \n        \"V\":mV/1000, \n        \"A\":mA/1000, \n        \"W\":mW/1000000\n};\n\nmsg.payload = out;\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "c68fa24a.03f0b"
+            ]
+        ]
+    },
+    {
+        "id": "94b3cdff.107a5",
+        "type": "mqtt in",
+        "z": "66030d11.bfd734",
+        "name": "",
+        "topic": "SolarPanel",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "46e169a9.732928",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "60abb445.3aa69c"
+            ]
+        ]
+    },
+    {
+        "id": "839cb93e.403a28",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "mydb",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "46e169a9.732928",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
