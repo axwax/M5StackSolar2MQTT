@@ -2,7 +2,7 @@
 measure solar panel voltage and current on M5Stack, transmit via MQTT to Node Red
 
 ## Hardware / BOM
-* Solar Panel with Controller (and USB output)
+* Solar Panel with Controller (and USB output) - output current must not exceed 4A
 * [M5Stack](https://shop.m5stack.com/collections/m5-core/products/grey-development-core)
 * [Voltmeter Unit (ADS1115)](https://shop.m5stack.com/collections/m5-unit/products/voltmeter-unit-ads1115)
 * [Ammeter Unit (ADS1115)](https://shop.m5stack.com/collections/m5-unit/products/ammeter-unit-ads1115)
